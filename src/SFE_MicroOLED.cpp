@@ -351,6 +351,9 @@ size_t MicroOLED::write(uint8_t c) {
             cursorY += fontHeight;
             cursorX = 0;
         }
+        if (cursorY + fontHeight > LCDHEIGHT) {
+            cursorY = 0;
+        }
     }
 
     return 1;
