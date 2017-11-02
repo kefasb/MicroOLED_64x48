@@ -26,6 +26,7 @@ Products that use this Library
 ---------------------------------
 
 * [Micro OLED Breakout](https://www.sparkfun.com/products/13003)- A breakout for the monochrome 64x48 OLED.
+* [Wemos OLED Shield](https://wiki.wemos.cc/products:d1_mini_shields:oled_shield) - An OLED shield for Wemos
 
 Version History
 ---------------

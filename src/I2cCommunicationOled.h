@@ -21,7 +21,14 @@ public:
     static const uint8_t OLED_I2C_DEFAULT_ADDRESS = 0x3C;
     static const uint8_t OLED_ALTERNATIVE_ADDRESS = 0x3D;
 
+    /**
+     * Create I2C communication with default OLED address.
+     */
     I2cCommunicationOled();
+
+    /**
+     * Create I2C communication with given address.
+     */
     I2cCommunicationOled(uint8_t i2cAddress);
     virtual ~I2cCommunicationOled();
 
