@@ -4,6 +4,11 @@
  * Jim Lindblom @ SparkFun Electronics
  * Original Creation Date: October 27, 2014
  * 
+ * Modified by:
+ * Piotr Borkowski
+ * 2017
+ * https://github.com/kefasb/MicroOLED_64x48
+ *
  * This sketch uses the MicroOLED library to draw a 3-D projected
  * cube, and rotate it along all three axes.
  * 

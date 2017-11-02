@@ -11,6 +11,10 @@
  July 27, 2015
  https://github.com/emil01/SparkFun_Micro_OLED_Arduino_Library/
 
+ Modified by:
+ Piotr Borkowski
+ 2017
+ https://github.com/kefasb/MicroOLED_64x48
 
  This file defines the hardware interface(s) for the Micro OLED Breakout. Those
  interfaces include SPI, I2C and a parallel bus.
@@ -223,5 +227,8 @@ private:
     void i2cWrite(byte address, byte control, byte data);
     void parallelSetup();
     void parallelWrite(byte data, byte dc);
+
+    void initDisplaySequence();
+    void initDisplayReset();
 };
 #endif

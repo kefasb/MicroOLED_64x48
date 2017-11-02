@@ -4,6 +4,11 @@
  Jim Lindblom @ SparkFun Electronics
  Original Creation Date: October 26, 2014
 
+ Modified by:
+ Piotr Borkowski
+ 2017
+ https://github.com/kefasb/MicroOLED_64x48
+
  This sketch lights up a familiar pattern on the MicroOLED
  Breakout. It's a great way to prove you've connected everything
  correctly and that your display is in working order.

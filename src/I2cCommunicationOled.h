@@ -2,6 +2,12 @@
  * I2cCommunicationOled.h
  *
  * Author: Piotr Borkowski
+ * 2017
+ * https://github.com/kefasb/MicroOLED_64x48
+ *
+ * Refactored original version from:
+ * https://github.com/sparkfun/SparkFun_Micro_OLED_Arduino_Library
+ *
  */
 
 #ifndef I2CCOMMUNICATION_OLED_H_

@@ -4,6 +4,11 @@
  Joel Bartlett @ SparkFun Electronics
  Original Creation Date: January 20, 2015
 
+ Modified by:
+ Piotr Borkowski
+ 2017
+ https://github.com/kefasb/MicroOLED_64x48
+
  This sketch shows you how to draw a 64x48 pixel Bitmap image on the MicroOLED.
 
  Hardware Connections:

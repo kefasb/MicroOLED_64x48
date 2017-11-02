@@ -1,7 +1,7 @@
 SparkFun Micro OLED Breakout Arduino Library
 ========================================
 
-![SparkFun Micro OLED Breakout](https://cdn.sparkfun.com//assets/parts/9/9/5/6/OLED_Action.jpg)
+![Micro OLED Library](https://cdn.sparkfun.com//assets/parts/9/9/5/6/OLED_Action.jpg)
 
 [*SparkFun Micro OLED Breakout (LCD-13003)*](https://www.sparkfun.com/products/13003)
 
@@ -29,6 +29,7 @@ Products that use this Library
 
 Version History
 ---------------
+* pre release [v 1.2.5](https://github.com/kefasb/MicroOLED_64x48/tree/V_1.2.5) - Refactoring and added some functionality
 * [v 1.1.2](https://github.com/sparkfun/SparkFun_Micro_OLED_Arduino_Library/tree/V_1.1.2) - Added compatibility for ESP8266
 * [v 1.1.1](https://github.com/sparkfun/SparkFun_Micro_OLED_Arduino_Library/tree/V_1.1.1) - Changed to remove register level pin access, for cross-platform compatibility
 * [v 1.1.0](https://github.com/sparkfun/SparkFun_Micro_OLED_Arduino_Library/tree/V_1.1.0) - Matching 1.6 standard
@@ -42,5 +43,3 @@ This product is _**open source**_!
 The **code** is released under the GPL v3 license. See the included LICENSE.md for more information.
 
 Distributed as-is; no warranty is given.
-
-- Your friends at SparkFun.

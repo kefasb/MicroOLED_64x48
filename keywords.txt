@@ -7,6 +7,10 @@
 #######################################
 
 MicroOLED	KEYWORD1
+ICommunicationOled KEYWORD1
+I2cCommunicationOled KEYWORD1
+SpiCommunicationOled KEYWORD1
+ParallelCommunicationOled KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -63,12 +67,4 @@ checkComm	KEYWORD2
 #######################################
 # Constants (LITERAL1)
 #######################################
-
-BLACK	LITERAL1
-WHITE	LITERAL1
-NORM	LITERAL1
-XOR	LITERAL1
-PAGE	LITERAL1
-ALL	LITERAL1
-
 
