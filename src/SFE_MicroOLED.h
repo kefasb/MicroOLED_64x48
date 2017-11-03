@@ -130,8 +130,17 @@ enum class OledCommunicationMode {
     MODE_SPI, MODE_I2C, MODE_PARALLEL
 };
 
+/**
+ * Defines clockwise rotation of OLED display
+ */
 enum class OledRotationMode {
     NONE, DEGREE90, DEGREE180, DEGREE270
+};
+
+enum class OledLineFoldMode {
+    ALWAYS, // Fold on new line character or when text does not fit a line
+    NEW_LINE_ONLY, // Fold only when new line character is to be printed
+    NEW_LINE_OPTIONAL // Fold on new line when it is not at the end of line what would cause inserting two lines. First because of line folding itself and second because of new line character
 };
 
 class MicroOLED: public Print {
@@ -139,7 +148,7 @@ public:
 // Constructor(s)
     MicroOLED(ICommunicationOled& communication, uint8_t rstPin);
     MicroOLED(ICommunicationOled& communication, uint8_t rstPin,
-            OledRotationMode rotation);
+            OledRotationMode rotation, OledLineFoldMode lineFoldMode);
     virtual ~MicroOLED() {
     }
 
@@ -214,10 +223,11 @@ private:
     const ICommunicationOled& communication;
     const uint8_t rstPin;
     const OledRotationMode rotation;
+    const OledLineFoldMode lineFoldMode;
 
     volatile uint8_t *wrport, *wrreg, *rdport, *rdreg;
     uint8_t wrpinmask, rdpinmask;
-    volatile uint8_t *ssport, *dcport, *ssreg, *dcreg;// use volatile because these are fixed location port address
+    volatile uint8_t *ssport, *dcport, *ssreg, *dcreg; // use volatile because these are fixed location port address
     uint8_t mosipinmask, sckpinmask, sspinmask, dcpinmask;
     OledDrawMode drawMode;
     OledDrawColor foreColor;

@@ -30,7 +30,7 @@ Products that use this Library
 
 Version History
 ---------------
-* pre release [v 1.2.5](https://github.com/kefasb/MicroOLED_64x48/tree/V_1.2.5) - Refactoring and added some functionality
+* [v 1.2.5](https://github.com/kefasb/MicroOLED_64x48/tree/V_1.2.5) - OLED rotation support added. Line folding options added.
 * [v 1.1.2](https://github.com/sparkfun/SparkFun_Micro_OLED_Arduino_Library/tree/V_1.1.2) - Added compatibility for ESP8266
 * [v 1.1.1](https://github.com/sparkfun/SparkFun_Micro_OLED_Arduino_Library/tree/V_1.1.1) - Changed to remove register level pin access, for cross-platform compatibility
 * [v 1.1.0](https://github.com/sparkfun/SparkFun_Micro_OLED_Arduino_Library/tree/V_1.1.0) - Matching 1.6 standard
