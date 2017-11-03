@@ -156,7 +156,12 @@ static uint8_t screenmemory[] = {
         0x00, 0x00, 0x00, 0x00 };
 
 MicroOLED::MicroOLED(ICommunicationOled& communication, uint8_t rstPin) :
-        communication(communication), rstPin(rstPin) {
+        MicroOLED(communication, rstPin, OledRotationMode::NONE) {
+}
+
+MicroOLED::MicroOLED(ICommunicationOled& communication, uint8_t rstPin,
+        OledRotationMode rotation) :
+        communication(communication), rstPin(rstPin), rotation(rotation) {
     // default 5x7 font
     setFontType(0);
     setColor(OledDrawColor::WHITE);
@@ -332,6 +337,30 @@ void MicroOLED::display(void) {
     }
 }
 
+uint8_t MicroOLED::softwareLcdWidth() const {
+    switch (rotation) {
+    case OledRotationMode::DEGREE90:
+    case OledRotationMode::DEGREE270:
+        return LCDHEIGHT;
+    case OledRotationMode::NONE:
+    case OledRotationMode::DEGREE180:
+    default:
+        return LCDWIDTH;
+    }
+}
+
+uint8_t MicroOLED::softwareLcdHeight() const {
+    switch (rotation) {
+    case OledRotationMode::DEGREE90:
+    case OledRotationMode::DEGREE270:
+        return LCDWIDTH;
+    case OledRotationMode::NONE:
+    case OledRotationMode::DEGREE180:
+    default:
+        return LCDHEIGHT;
+    }
+}
+
 /** \brief Override Arduino's Print.
 
  Arduino's print overridden so that we can use uView.print().
@@ -345,11 +374,11 @@ size_t MicroOLED::write(uint8_t c) {
     } else {
         drawChar(cursorX, cursorY, c, foreColor, drawMode);
         cursorX += fontWidth + 1;
-        if (cursorX + fontWidth > LCDWIDTH) {
+        if (cursorX + fontWidth > softwareLcdWidth()) {
             cursorY += fontHeight;
             cursorX = 0;
         }
-        if (cursorY + fontHeight > LCDHEIGHT) {
+        if (cursorY + fontHeight > softwareLcdHeight()) {
             cursorY = 0;
         }
     }
@@ -380,19 +409,33 @@ void MicroOLED::pixel(uint8_t x, uint8_t y) {
  */
 void MicroOLED::pixel(uint8_t x, uint8_t y, OledDrawColor color,
         OledDrawMode mode) {
+    if (OledRotationMode::DEGREE270 == rotation) {
+        uint8_t tmpX = x;
+        x = y;
+        y = (LCDHEIGHT - 1) - tmpX;
+    } else if (OledRotationMode::DEGREE90 == rotation) {
+        uint8_t tmpX = x;
+        x = (LCDWIDTH - 1) - y;
+        y = tmpX;
+    } else if (OledRotationMode::DEGREE180 == rotation) {
+        x = (LCDWIDTH - 1) - x;
+        y = (LCDHEIGHT - 1) - y;
+    }
+
     if ((x >= LCDWIDTH) || (y >= LCDHEIGHT)) {
         return;
     }
 
+    uint8_t& memoryPoint = screenmemory[x + (y / 8) * LCDWIDTH];
     if (OledDrawMode::XOR == mode) {
         if (OledDrawColor::WHITE == color) {
-            screenmemory[x + (y / 8) * LCDWIDTH] ^= _BV((y % 8));
+            memoryPoint ^= _BV((y % 8));
         }
     } else {
         if (OledDrawColor::WHITE == color) {
-            screenmemory[x + (y / 8) * LCDWIDTH] |= _BV((y % 8));
+            memoryPoint |= _BV((y % 8));
         } else {
-            screenmemory[x + (y / 8) * LCDWIDTH] &= ~_BV((y % 8));
+            memoryPoint &= ~_BV((y % 8));
         }
     }
 }
@@ -883,3 +926,4 @@ void MicroOLED::drawBitmap(uint8_t * bitArray) {
     for (int i = 0; i < (LCDWIDTH * LCDHEIGHT / 8); i++)
         screenmemory[i] = bitArray[i];
 }
+

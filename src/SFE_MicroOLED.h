@@ -130,10 +130,16 @@ enum class OledCommunicationMode {
     MODE_SPI, MODE_I2C, MODE_PARALLEL
 };
 
+enum class OledRotationMode {
+    NONE, DEGREE90, DEGREE180, DEGREE270
+};
+
 class MicroOLED: public Print {
 public:
 // Constructor(s)
     MicroOLED(ICommunicationOled& communication, uint8_t rstPin);
+    MicroOLED(ICommunicationOled& communication, uint8_t rstPin,
+            OledRotationMode rotation);
     virtual ~MicroOLED() {
     }
 
@@ -207,6 +213,8 @@ public:
 private:
     const ICommunicationOled& communication;
     const uint8_t rstPin;
+    const OledRotationMode rotation;
+
     volatile uint8_t *wrport, *wrreg, *rdport, *rdreg;
     uint8_t wrpinmask, rdpinmask;
     volatile uint8_t *ssport, *dcport, *ssreg, *dcreg;// use volatile because these are fixed location port address
@@ -230,5 +238,7 @@ private:
 
     void initDisplaySequence();
     void initDisplayReset();
+    uint8_t softwareLcdWidth() const;
+    uint8_t softwareLcdHeight() const;
 };
 #endif
